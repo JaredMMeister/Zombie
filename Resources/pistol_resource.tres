@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="gun_type" load_steps=3 format=3 uid="uid://ccw1v2cfjtwga"]
+
+[ext_resource type="Texture2D" uid="uid://fer4tq2eibvs" path="res://Graphics/pistol.png" id="1_ik3wc"]
+[ext_resource type="Script" path="res://gun_resource.gd" id="2_md173"]
+
+[resource]
+script = ExtResource("2_md173")
+gun_texture = ExtResource("1_ik3wc")
+type = 0
+damage = 2

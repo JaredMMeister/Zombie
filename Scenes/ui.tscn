@@ -1,0 +1,242 @@
+[gd_scene load_steps=7 format=3 uid="uid://brq8mhtgaw7j"]
+
+[ext_resource type="Script" path="res://Scenes/ui.gd" id="1_5dwek"]
+[ext_resource type="Texture2D" uid="uid://bvbsdyeu3p72w" path="res://Graphics/panel-009.png" id="1_7ji5v"]
+[ext_resource type="Texture2D" uid="uid://d0vpp3vky7xbp" path="res://Graphics/Heart.png" id="2_dlgku"]
+[ext_resource type="Texture2D" uid="uid://bpsom57xctbbd" path="res://Graphics/Ammo.png" id="3_rlpx7"]
+[ext_resource type="Texture2D" uid="uid://dn7o2npvaaphi" path="res://Graphics/Trophy.png" id="4_h7mhm"]
+[ext_resource type="Texture2D" uid="uid://csjdsrmna2620" path="res://Graphics/Money.png" id="5_kjqbn"]
+
+[node name="UI" type="CanvasLayer"]
+script = ExtResource("1_5dwek")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="LeftBox" type="NinePatchRect" parent="MarginContainer/HBoxContainer"]
+self_modulate = Color(0.811765, 0.776471, 0.721569, 0.588235)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+texture = ExtResource("1_7ji5v")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/LeftBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LeftBox/MarginContainer"]
+layout_mode = 2
+
+[node name="HealthLine" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HealthIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftBox/MarginContainer/VBoxContainer/HealthLine"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("2_dlgku")
+stretch_mode = 5
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/LeftBox/MarginContainer/VBoxContainer/HealthLine"]
+unique_name_in_owner = true
+self_modulate = Color(0.901961, 0.282353, 0.180392, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 4.0
+max_value = 60.0
+step = 10.0
+value = 20.0
+show_percentage = false
+
+[node name="AmmoLine" type="HBoxContainer" parent="MarginContainer/HBoxContainer/LeftBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="AmmoIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/LeftBox/MarginContainer/VBoxContainer/AmmoLine"]
+self_modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("3_rlpx7")
+stretch_mode = 5
+
+[node name="AmmoBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/LeftBox/MarginContainer/VBoxContainer/AmmoLine"]
+unique_name_in_owner = true
+self_modulate = Color(0, 0.776471, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+size_flags_stretch_ratio = 4.0
+max_value = 6.0
+step = 1.0
+value = 5.0
+show_percentage = false
+
+[node name="AmmoRefillTimer" type="Timer" parent="MarginContainer/HBoxContainer/LeftBox/MarginContainer/VBoxContainer/AmmoLine/AmmoBar"]
+unique_name_in_owner = true
+wait_time = 0.2
+one_shot = true
+
+[node name="HorizontalSpacer" type="Control" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 6.0
+
+[node name="RightBox" type="NinePatchRect" parent="MarginContainer/HBoxContainer"]
+self_modulate = Color(0.811765, 0.776471, 0.721569, 0.588235)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("1_7ji5v")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightBox/MarginContainer"]
+layout_mode = 2
+
+[node name="LevelLine" type="HBoxContainer" parent="MarginContainer/HBoxContainer/RightBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/HBoxContainer/RightBox/MarginContainer/VBoxContainer/LevelLine"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "1"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="LevelIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/RightBox/MarginContainer/VBoxContainer/LevelLine"]
+self_modulate = Color(0.754626, 0.398637, 0.209155, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_h7mhm")
+stretch_mode = 5
+
+[node name="MoneyLine" type="HBoxContainer" parent="MarginContainer/HBoxContainer/RightBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="MoneyLabel" type="Label" parent="MarginContainer/HBoxContainer/RightBox/MarginContainer/VBoxContainer/MoneyLine"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "25"
+horizontal_alignment = 1
+clip_text = true
+
+[node name="MoneyIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/RightBox/MarginContainer/VBoxContainer/MoneyLine"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_kjqbn")
+stretch_mode = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="LeftSpacer" type="Control" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[node name="PurchaseTextBox" type="NinePatchRect" parent="MarginContainer/HBoxContainer2"]
+visible = false
+self_modulate = Color(0.811765, 0.776471, 0.721569, 0.588235)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+texture = ExtResource("1_7ji5v")
+region_rect = Rect2(0, 0, 48, 48)
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer2/PurchaseTextBox"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer2/PurchaseTextBox/MarginContainer"]
+layout_mode = 2
+
+[node name="PurchaseLabel" type="Label" parent="MarginContainer/HBoxContainer2/PurchaseTextBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press 'E' to purchase Door"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer2/PurchaseTextBox/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="PriceLabel" type="Label" parent="MarginContainer/HBoxContainer2/PurchaseTextBox/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 4.0
+text = "20"
+horizontal_alignment = 2
+
+[node name="CoinLabel" type="Label" parent="MarginContainer/HBoxContainer2/PurchaseTextBox/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 5.0
+text = "coins "
+uppercase = true
+
+[node name="RightSpacer" type="Control" parent="MarginContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+
+[connection signal="timeout" from="MarginContainer/HBoxContainer/LeftBox/MarginContainer/VBoxContainer/AmmoLine/AmmoBar/AmmoRefillTimer" to="." method="_on_ammo_refill_timer_timeout"]

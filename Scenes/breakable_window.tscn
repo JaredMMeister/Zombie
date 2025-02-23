@@ -1,0 +1,64 @@
+[gd_scene load_steps=5 format=3 uid="uid://r72aug0eow57"]
+
+[ext_resource type="Texture2D" uid="uid://74vt11axc23c" path="res://Graphics/colored-transparent_packed.png" id="1_cxyvf"]
+[ext_resource type="Script" path="res://Scenes/breakable_window.gd" id="1_ops6v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ajqg"]
+size = Vector2(32, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dl600"]
+size = Vector2(30, 16)
+
+[node name="BreakableWindow" type="StaticBody2D"]
+collision_layer = 32
+collision_mask = 7
+script = ExtResource("1_ops6v")
+
+[node name="ZombieChecker" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ZombieChecker"]
+shape = SubResource("RectangleShape2D_3ajqg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dl600")
+
+[node name="RightWindow" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+texture = ExtResource("1_cxyvf")
+region_enabled = true
+region_rect = Rect2(32, 208, 16, 16)
+
+[node name="LeftWindow" type="Sprite2D" parent="."]
+position = Vector2(-8, 0)
+texture = ExtResource("1_cxyvf")
+region_enabled = true
+region_rect = Rect2(32, 208, 16, 16)
+
+[node name="RightWood" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+rotation = 1.5708
+texture = ExtResource("1_cxyvf")
+region_enabled = true
+region_rect = Rect2(352, 192, 16, 16)
+
+[node name="LeftWood" type="Sprite2D" parent="."]
+position = Vector2(-8, 0)
+rotation = -1.5708
+texture = ExtResource("1_cxyvf")
+region_enabled = true
+region_rect = Rect2(352, 192, 16, 16)
+
+[node name="MiddleWood" type="Sprite2D" parent="."]
+rotation = -1.5708
+texture = ExtResource("1_cxyvf")
+region_enabled = true
+region_rect = Rect2(352, 192, 16, 16)
+
+[node name="WindowIFrames" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[connection signal="body_entered" from="ZombieChecker" to="." method="_on_zombie_checker_body_entered"]
+[connection signal="timeout" from="WindowIFrames" to="." method="_on_window_i_frames_timeout"]

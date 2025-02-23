@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3sfuqfyfrloy"]
+
+[ext_resource type="Script" path="res://zombie.gd" id="1_6sgol"]
+[ext_resource type="Resource" uid="uid://ro45epjsad07" path="res://Resources/zombie_red.tres" id="2_kofuf"]
+[ext_resource type="Texture2D" uid="uid://cynfkys5u0rkw" path="res://Graphics/zombie.png" id="3_5akaf"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n8l7n"]
+radius = 6.0
+
+[node name="Zombie" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 63
+motion_mode = 1
+wall_min_slide_angle = 0.0
+safe_margin = 0.5
+script = ExtResource("1_6sgol")
+enemy_stats = ExtResource("2_kofuf")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("3_5akaf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n8l7n")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="NavTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[connection signal="timeout" from="NavTimer" to="." method="_on_nav_timer_timeout"]

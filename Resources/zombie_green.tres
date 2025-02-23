@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="zombie_type" load_steps=3 format=3 uid="uid://cedntaslpwqfu"]
+
+[ext_resource type="Script" path="res://zombie_resource.gd" id="1_sgv3s"]
+[ext_resource type="Texture2D" uid="uid://cynfkys5u0rkw" path="res://Graphics/zombie.png" id="2_8t4f4"]
+
+[resource]
+script = ExtResource("1_sgv3s")
+zombie_texture = ExtResource("2_8t4f4")
+type = 0
+zombie_speed = 32
+health = 3
+money_value = 3

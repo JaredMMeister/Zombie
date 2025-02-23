@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://d4knr6mvfpncv"]
+
+[ext_resource type="Script" path="res://Scenes/buyable_door.gd" id="1_cnysm"]
+[ext_resource type="Texture2D" uid="uid://74vt11axc23c" path="res://Graphics/colored-transparent_packed.png" id="1_y5aup"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nuofq"]
+size = Vector2(30, 14)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kfcgf"]
+radius = 15.0
+height = 36.0
+
+[node name="BuyableDoor" type="StaticBody2D"]
+collision_mask = 31
+script = ExtResource("1_cnysm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_nuofq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, 0)
+rotation = 1.5708
+texture = ExtResource("1_y5aup")
+region_enabled = true
+region_rect = Rect2(32, 48, 16, 16)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-8, 0)
+rotation = -1.5708
+texture = ExtResource("1_y5aup")
+region_enabled = true
+region_rect = Rect2(32, 48, 16, 16)
+
+[node name="BuyZone" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BuyZone"]
+shape = SubResource("CapsuleShape2D_kfcgf")
+
+[connection signal="body_entered" from="BuyZone" to="." method="_on_buy_zone_body_entered"]
+[connection signal="body_exited" from="BuyZone" to="." method="_on_buy_zone_body_exited"]
